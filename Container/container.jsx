@@ -21,6 +21,7 @@ export class Container extends React.Component {
     measureComponent() {
         const width = getComponentWidth( this );
         const height = this.props.height || getComponentHeight( this );
+
         const { marginRight, marginBottom } = this.props;
 
         // Need to offset the buffers to prevent infinite expansion
@@ -34,23 +35,24 @@ export class Container extends React.Component {
         window.addEventListener( 'resize', this.measureComponent );
         this.measureComponent();
     }
+
     render() {
-        
+
         const width                = this.state.width;
         const height               = this.state.height;
         const { marginRight, marginBottom } = this.props;
 
         const viewBox = calcViewBox( width + marginRight, height + marginBottom );
-        
+
         // pass down height ( width? ) from container
         // height, width can be measured once and calculated with margins baked-in
         const children = React.Children.map( this.props.children, child =>
             React.cloneElement( child, {
                 "width": width,
-                "height": height            
+                "height": height
             })
         );
-        
+
         return (
             <svg
               width="100%"

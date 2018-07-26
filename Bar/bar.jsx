@@ -34,7 +34,6 @@ class Bar extends React.Component {
               height={ this.props.height } />
         );
     }
-
 }
 
 Bar.defaultProps = {

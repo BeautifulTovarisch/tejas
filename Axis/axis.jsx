@@ -30,7 +30,7 @@ class Axis extends React.Component {
             .attr( "transform", `rotate( ${ this.props.rotate } )` )
             : renderAxis( this, axisType, nextProps );
     }
-    
+
     render() {
         return (
             <g></g>

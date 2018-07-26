@@ -7,7 +7,7 @@ export const LegendBox = props =>
         fill={ props.fill }
         width={ props.width || 10 }
         height={ props.height || 10 } />
-      
+
 export const LegendLabel = props =>
       <text
         x={ props.x }
