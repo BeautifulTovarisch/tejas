@@ -28,6 +28,7 @@ class Axis extends React.Component {
             .attr( "dx", "-1.25em" )
             .attr( "dy", "0.35em" )
             .attr( "transform", `rotate( ${ this.props.rotate } )` )
+            .attr( "font-size", this.props.fontSize )
             : renderAxis( this, axisType, nextProps );
     }
 
