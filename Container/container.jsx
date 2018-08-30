@@ -18,22 +18,23 @@ export class Container extends React.Component {
         };
     }
 
-    measureComponent() {
-        const width = getComponentWidth( this );
-        const height = this.props.height || getComponentHeight( this );
+    measureComponent({ clientWidth, clientHeight }) {
 
         const { marginRight, marginBottom } = this.props;
 
         // Need to offset the buffers to prevent infinite expansion
         this.setState({
-            width: width - marginRight,
-            height: height - marginBottom
+            width: clientWidth - marginRight,
+            height: clientHeight - marginBottom
         });
     }
 
     componentDidMount() {
-        window.addEventListener( 'resize', this.measureComponent );
-        this.measureComponent();
+        const { svg } = this;
+        
+        this.measureComponent( svg );
+        window.addEventListener( 'resize', () => this.measureComponent( svg ) );
+        
     }
 
     render() {
@@ -55,6 +56,7 @@ export class Container extends React.Component {
 
         return (
             <svg
+              ref={ svg => this.svg = svg }
               width="100%"
               height="100%"
               viewBox={ viewBox }
