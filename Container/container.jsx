@@ -25,7 +25,7 @@ export class Container extends React.Component {
         // Need to offset the buffers to prevent infinite expansion
         this.setState({
             width: clientWidth - marginRight,
-            height: clientHeight - marginBottom
+            height: ( this.props.height || clientHeight ) - marginBottom
         });
     }
 
