@@ -2,45 +2,19 @@
 
 import React from 'react';
 
-import {
-    max,
-    extent,
-    scaleTime,
-    scaleLinear,
-    curveMonotoneX
-} from 'd3';
-
-import {
-  calcTransition,
-  selectComponent
-} from '../calc';
-
-export const scaleX = ( width, data ) => scaleTime()
-    .domain( extent( data, d => d.xValue ) )
-    .range( [ 0, width ] );
-
-export const scaleY = ( height, data ) => scaleLinear()
-    .domain( extent( data, d => d.yValue ) )
-    .range( [ height, 0 ] );
-
 export class Line extends React.Component {
     constructor( props ) {
         super( props );
     }
-    componentWillReceiveProps( nextProps ) {
-        const node = selectComponent( this );
-
-        return node.transition( calcTransition() )
-            .attr( "d", nextProps.d );
-    }
     render() {
+        const { d, dashed, stroke, strokeWidth } = this.props;
         return (
             <path
-              d={ this.props.d }
+              d={ d }
               fill='none'
-              stroke={ this.props.stroke }
-              strokeWidth={ this.props.strokeWidth }
-              strokeDasharray={ this.props.dashed ? "5,5" : 0 } />
+              stroke={ stroke }
+              strokeWidth={ strokeWidth }
+              strokeDasharray={ dashed ? "5,5" : 0 } />
         );
     }
 }
