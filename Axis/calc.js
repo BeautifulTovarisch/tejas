@@ -11,16 +11,12 @@ import {
     scaleLinear
 } from 'd3';
 
-import {
-    flatten
-} from 'lodash';
-
 import  {
     selectComponent
 } from '../calc.js';
 
 export const mapDomain = ( data, key ) =>
-    extent( flatten( data ), d => d[ key ] );
+    extent( data, d => d[ key ] );
 
 export const timeAxis = props => {
     const xScale = scaleTime()
